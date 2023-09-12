@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "CosmosEndpoint": "",
+    "CosmosKey": "",
+    "TelegramBotToken": "",
+    "chatId": "",
+    "AdminId": "",
+    "DatabaseName": "",
+    "ContainerName": "",
+    "Schedule": "0 */4 * * *",
+    "Url": ""
+  }
+}
