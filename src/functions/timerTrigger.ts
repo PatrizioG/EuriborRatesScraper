@@ -43,10 +43,10 @@ export async function timerTrigger(
   const bot = new Telegraf(botToken);
 
   if (item) {
-    context.log(`Item '${item.id}' already scraped`);
-
     // Send data to admin
-    bot.telegram.sendMessage(adminId, prepareMessage(euriborRates));
+    const infoMessage = `Day ${euriborRates.date} already scraped`;
+    context.log(infoMessage);
+    bot.telegram.sendMessage(adminId, infoMessage);
     context.log("Data sent to admin");
   } else {
     // Save item to cosmos Db
@@ -66,23 +66,23 @@ app.timer("timerTrigger", {
 
 function prepareMessage(euriborRates: EuriborRates): string {
   return `${euriborRates.date}
-  Indice euribor 1 settimana: ${euriborRates.W1} ${CalculateTrendEmoji(
+  Euribor 1 week: ${euriborRates.W1} ${CalculateTrendEmoji(
     euriborRates.W1!,
     euriborRates.W1Prev!
   )}
-  Indice euribor 1 mese: ${euriborRates.M1} ${CalculateTrendEmoji(
+  Euribor 1 month: ${euriborRates.M1} ${CalculateTrendEmoji(
     euriborRates.M1!,
     euriborRates.M1Prev!
   )}
-  Indice euribor 3 mesi: ${euriborRates.M3} ${CalculateTrendEmoji(
+  Euribor 3 months: ${euriborRates.M3} ${CalculateTrendEmoji(
     euriborRates.M3!,
     euriborRates.M3Prev!
   )}
-  Indice euribor 6 mesi: ${euriborRates.M6} ${CalculateTrendEmoji(
+  Euribor 6 months: ${euriborRates.M6} ${CalculateTrendEmoji(
     euriborRates.M6!,
     euriborRates.M6Prev!
   )}
-  Indice euribor 12 mesi: ${euriborRates.M12} ${CalculateTrendEmoji(
+  Euribor 12 months: ${euriborRates.M12} ${CalculateTrendEmoji(
     euriborRates.M12!,
     euriborRates.M12Prev!
   )}`;
