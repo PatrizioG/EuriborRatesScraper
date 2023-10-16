@@ -42,13 +42,13 @@ export async function timerTrigger(
 
   const bot = new Telegraf(botToken);
 
-  if (item) {
-    // Send data to admin
-    const infoMessage = `Day ${euriborRates.date} already scraped`;
-    context.log(infoMessage);
-    bot.telegram.sendMessage(adminId, infoMessage);
-    context.log("Data sent to admin");
-  } else {
+  if (euriborRates.M3 <= 2.728) {
+    const thresholdMessage = `2.728 threshold reached, M3 value is: ${euriborRates.M3}`;
+    context.log(thresholdMessage);
+    bot.telegram.sendMessage(adminId, thresholdMessage);
+  }
+
+  if (!item) {
     // Save item to cosmos Db
     const { resource: newItem } = await container.items.create(euriborRates);
     context.log(`Item '${newItem.id}' inserted`);
